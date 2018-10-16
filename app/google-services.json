@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "572619895261",
+    "firebase_url": "https://dolly-e7b16.firebaseio.com",
+    "project_id": "dolly-e7b16",
+    "storage_bucket": "dolly-e7b16.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:572619895261:android:35914b93227e1a2f",
+        "android_client_info": {
+          "package_name": "com.example.user.dollypassengerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "572619895261-2uj9hs3tv0qs11hlcrv8u4hd23itvhng.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.user.dollypassengerapp",
+            "certificate_hash": "1e01e3f8b213e315517ab7d03827cbb60f37301a"
+          }
+        },
+        {
+          "client_id": "572619895261-ng9k8eekd3imverli6tq9e3hf6r09s2l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-AqilC5f_Bdk9Brm1eL5ItDpAdkFmfdA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "572619895261-ng9k8eekd3imverli6tq9e3hf6r09s2l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
