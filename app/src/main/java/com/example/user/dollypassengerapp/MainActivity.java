@@ -8,11 +8,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -35,12 +42,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         email = (EditText) findViewById(R.id.email);
         passwd = (EditText) findViewById(R.id.password);
         login = (Button) findViewById(R.id.login);
+
+
         db = FirebaseDatabase.getInstance();
         dbRef = db.getReference("message");
         mAuth = FirebaseAuth.getInstance();
+
         findViewById(R.id.signup).setOnClickListener(this);
 
         dbRef.setValue("Hello World");
+
+        // Allow for real time updates in database (db)
+        dbRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String val = dataSnapshot.getValue(String.class);
+                Toast.makeText(MainActivity.this, val, Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -57,6 +82,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         };
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String emailStr = email.getText().toString();
+                String pwd = passwd.getText().toString();
+
+                if (!emailStr.equals("") && !pwd.equals("")){
+                    mAuth.signInWithEmailAndPassword(emailStr, pwd).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (!task.isSuccessful()) {
+                                Toast.makeText(MainActivity.this, "Sign in Failed",
+                                        Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(MainActivity.this, "Signed In!",
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+                }
+            }
+        });
     }
 
     @Override
