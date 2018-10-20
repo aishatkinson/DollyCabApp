@@ -11,10 +11,11 @@
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:text="Email"/>
+        android:text="@string/email" />
 
     <EditText
         android:id="@+id/password"
@@ -25,7 +26,7 @@
         android:layout_marginBottom="148dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:text="Password"/>
+        android:text="@string/password" />
 
     <TextView
         android:id="@+id/textView"
@@ -46,7 +47,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="33dp"
-        android:text="Don't have an account? Sign Up" />
+        android:text="@string/signup" />
 
     <Button
         android:id="@+id/login"
@@ -55,5 +56,5 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="78dp"
-        android:text="Log In" />
+        android:text="@string/login" />
 </RelativeLayout>
