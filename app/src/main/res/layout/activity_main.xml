@@ -15,7 +15,7 @@
         android:layout_centerVertical="true"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:text="@string/email" />
+        android:hint="@string/email" />
 
     <EditText
         android:id="@+id/password"
@@ -26,7 +26,7 @@
         android:layout_marginBottom="148dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:text="@string/password" />
+        android:hint="@string/password" />
 
     <TextView
         android:id="@+id/textView"

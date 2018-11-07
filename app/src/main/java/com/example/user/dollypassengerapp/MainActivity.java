@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private static final String TAG = "MainActivity";
-
+    private FirebaseUser user;
     private EditText email;
     private EditText passwd;
     private Button login;
@@ -40,9 +40,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        email = (EditText) findViewById(R.id.email);
-        passwd = (EditText) findViewById(R.id.password);
-        login = (Button) findViewById(R.id.login);
+        email = findViewById(R.id.email);
+        passwd = findViewById(R.id.password);
+        login = findViewById(R.id.login);
 
 
         db = FirebaseDatabase.getInstance();
@@ -51,21 +51,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         findViewById(R.id.signup).setOnClickListener(this);
 
-       // dbRef.setValue("Hello World");
-
-        // Allow for real time updates in database (db)
-
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 // Current user
-                FirebaseUser user = firebaseAuth.getCurrentUser();
+                user = firebaseAuth.getCurrentUser();
 
                 if(user!=null){
                     //user is signed in
                     Toast.makeText(MainActivity.this, "Signed In!",
                             Toast.LENGTH_LONG).show();
-                    Log.d(TAG, "user is signed in");
+//                    Log.d(TAG, "user is signed in");
                 }
                 else{
                     //user is signed out
@@ -78,14 +74,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String emailStr = email.getText().toString();
-                String pwd = passwd.getText().toString();
-
                 if (!TextUtils.isEmpty(email.getText().toString()) && !TextUtils.isEmpty(passwd.getText().toString() )){
+                    final String emailStr = email.getText().toString();
+                    final String pwd = passwd.getText().toString();
                     login(emailStr,pwd);
+                    Intent intent = new Intent(MainActivity.this,
+                            BookingActivity.class );
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
                 }
                 else{
-
+                    Toast.makeText(MainActivity.this, "Please Enter Login Details",
+                            Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -93,20 +93,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void login (String email, String pwd){
-        if (!email.equals("") && !pwd.equals("")){
-            mAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (!task.isSuccessful()) {
-                        Toast.makeText(MainActivity.this, "Sign in Failed",
-                                Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(MainActivity.this, "Signed In!",
-                                Toast.LENGTH_LONG).show();
-                    }
+        mAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(MainActivity.this, "Signed in",
+                            Toast.LENGTH_LONG).show();
+                } else {
+
                 }
-            });
-        }
+            }
+        });
     }
     @Override
     public void onStart() {
@@ -120,6 +117,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onStop(){
         super.onStop();
         if (mAuthListener!=null){
+            //stops the account being authtenicated in the background
+
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }

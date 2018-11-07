@@ -15,7 +15,7 @@
         android:layout_marginTop="201dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:text="@string/email"
+        android:hint="@string/email"
         tools:layout_editor_absoluteX="84dp"
         tools:layout_editor_absoluteY="171dp" />
 
@@ -28,7 +28,7 @@
         android:layout_marginBottom="191dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:text="Password"
+        android:hint="Password"
         tools:text="@string/password" />
 
     <Button
@@ -54,7 +54,7 @@
         android:layout_marginStart="29dp"
         android:layout_marginLeft="29dp"
         android:layout_marginTop="17dp"
-        android:text="Register You Log in Detail" />
+        android:text="Register Your Log in Detail" />
 
     <Button
         android:id="@+id/btnBack"
@@ -79,7 +79,7 @@
         android:layout_marginTop="61dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/firstName"
+        android:hint="@string/firstName"
         tools:text="@string/firstName" />
 
     <EditText
@@ -92,7 +92,7 @@
         android:layout_marginTop="123dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/surname"
+        android:hint="@string/surname"
         tools:text="@string/surname" />
 
 </RelativeLayout>

@@ -42,16 +42,16 @@ public class SignUpActivity extends AppCompatActivity {
         progLog = new ProgressDialog(this);
 
         fname = (EditText) findViewById(R.id.firstName);
-        lName = (EditText) findViewById(R.id.lastName);
-        userEmail = (EditText) findViewById(R.id.userEmail);
-        password = (EditText) findViewById(R.id.usrPwd);
+        lName = (EditText)findViewById(R.id.lastName);
+        userEmail =(EditText) findViewById(R.id.userEmail);
+        password =(EditText) findViewById(R.id.usrPwd);
         signUp = (Button) findViewById(R.id.signUp);
         bk = (Button) findViewById(R.id.btnBack);
 
         bk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignUpActivity.this,
+                Intent intent = new Intent( SignUpActivity.this,
                         MainActivity.class );
                 startActivity(intent);
             }
@@ -92,7 +92,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                                 //Opens next screen
                                 Intent intent = new Intent(SignUpActivity.this,
-                                        LoadActivity.class );
+                                        MapsActivity.class );
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                             }
