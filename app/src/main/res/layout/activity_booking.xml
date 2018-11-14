@@ -54,7 +54,7 @@
         android:ems="10"
         android:hint="Collection Time"
         android:inputType="time" />
-<RadioGroup
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <RadioButton
@@ -73,7 +73,7 @@
         android:layout_marginBottom="137dp"
         android:text="Dolly Dosh"
         />
-</RadioGroup>
+
     <RadioButton
         android:id="@+id/paypal"
         android:layout_width="wrap_content"
@@ -90,7 +90,7 @@
         android:layout_marginBottom="141dp"
         android:text="PayPal"
         />
-/>
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
