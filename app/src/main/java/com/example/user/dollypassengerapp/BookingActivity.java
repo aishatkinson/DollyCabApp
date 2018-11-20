@@ -42,7 +42,7 @@ public class BookingActivity extends AppCompatActivity {
                 else {
                     payOpt = dDosh.getText().toString();
                 }
-                double km = 7;
+                double km = 7; // calculated
                 double cost = km*1;
                 String payment = "Cost for this journey is: €" + cost +
                         ". Payment with be deducted from " +  payOpt + " account";
